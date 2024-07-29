@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # StudyNotion_Project.
 =======
 # React & Tailwind CSS Starter Pack
@@ -33,3 +34,6 @@ The project is set up to use `postcss-cli` to process your CSS files. You can ad
 
 Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
 >>>>>>> 7f93557 (First Commit StudyNotion)
+=======
+# StudyNotion..
+>>>>>>> f0fe4fce30a2e61cb9fff65aefe11331a0006c21
