@@ -15,6 +15,8 @@ import Footer from "../components/common/Footer"
 import ConfirmationModel from "../components/common/ConfirmationModel"
 import { FaStar } from "react-icons/fa"
 import { BuyCourse } from "../services/operations/studentFeaturesAPI"
+import { ACCOUNT_TYPE } from "../utils/constants"
+import toast from "react-hot-toast"
 
 // import ConfirmationModal from "../components/Common/ConfirmationModal"
 // import Footer from "../components/Common/Footer"
@@ -113,17 +115,23 @@ function CourseDetails() {
   } = response.courseDetail
 
   const handleBuyCourse = () => {
+    
+    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+      toast.error("You are an Instructor. You can't buy a course.")
+      return
+    }
     if (token) {
     BuyCourse(token, [courseId], user, navigate, dispatch)
       return
     }
+
     setConfirmationModal({
       text1: "You are not logged in!",
       text2: "Please login to Purchase Course.",
-      btn1Text: "Login",
-      btn2Text: "Cancel",
-      btn1Handler: () => navigate("/login"),
-      btn2Handler: () => setConfirmationModal(null),
+      btnText1: "Login",
+      btnText2: "Cancel",
+      btnHandler1: () => navigate("/login"),
+      btnHandler2: () => setConfirmationModal(null),
     })
   }
 
@@ -141,7 +149,7 @@ function CourseDetails() {
       <div className={`relative w-full `}>
         {/* Hero Section */}
         <div className="mx-auto flex justify-between box-content px-4 lg:w-[1024px] 2xl:relative ">
-          <div className="  mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
+          <div className="relative z-0  mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
             <div className="relative  block max-h-[30rem] lg:hidden">
               <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
               <img

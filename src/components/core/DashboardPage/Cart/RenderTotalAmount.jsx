@@ -27,6 +27,11 @@ const RenderTotalAmount = () => {
              onclick={handleBuyCourse}
             />
             </div>
+            <div className='min-w-[250px]'>
+            <p className="min-w-[250px] pb-3 pt-6 text-center text-sm  text-richblack-25">
+             Don't Scan Just enter your Number on UPI and pay
+            </p>
+          </div>
   </div>
   )
 }

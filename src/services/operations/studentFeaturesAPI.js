@@ -5,6 +5,7 @@ import rzpLogo from "../../assets/Logo/rzp_logo.png"
 import { setPaymentLoading } from "../../slices/courseSlice"
 import { resetCart } from "../../slices/cartSlice"
 import { studentEndpoints } from "../apis"
+import { logout } from "./authAPI"
 // import { resetCart } from "../../slices/cartSlice"
 // import { setPaymentLoading } from "../../slices/courseSlice"
 // import { apiConnector } from "../apiConnector"
@@ -103,7 +104,7 @@ export async function BuyCourse(
 // Verify the Payment
 async function verifyPayment(bodyData, token, navigate, dispatch) {
   //const toastId = toast.loading("Verifying Payment...")
-  const toastIdd=toast.loading("Don't Scan Just enter your Number on UPI and pay...Don't worry no money will be deducted.")
+  //const toastIdd=toast.loading("Don't Scan Just enter your Number on UPI and pay...Don't worry no money will be deducted.")
   dispatch(setPaymentLoading(true))
   try {
     const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
@@ -116,20 +117,20 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
       throw new Error(response.data.message)
     }
 
-    toast.success("Payment Successful. You are Added to the course ")
-    navigate("/dashboard/enrolled-courses")
-    dispatch(resetCart())
+    // toast.success("Payment Successful. You are Added to the course ")
+    // navigate("/dashboard/enrolled-courses")
+    // dispatch(resetCart())
   } catch (error) {
-    toast.success("Payment Successful. You are Added to the course ")
-    navigate("/dashboard/enrolled-courses")
-    dispatch(resetCart())
+   // toast.success("Payment Successful. You are Added to the course ")
+    navigate("/dashboard/my-profile")
+    dispatch(resetCart());
   }
  
   dispatch(setPaymentLoading(false))
   toast.success("Payment Successful. You are Added to the course ")
-    navigate("/dashboard/enrolled-courses")
+    navigate("/dashboard/my-profile")
     dispatch(resetCart())
-    toast.dismiss(toastIdd)
+    // toast.dismiss(toastIdd)
     
 }
 
