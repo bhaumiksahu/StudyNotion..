@@ -122,15 +122,15 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     // dispatch(resetCart())
   } catch (error) {
    // toast.success("Payment Successful. You are Added to the course ")
-    //navigate("/dashboard/my-profile")
-    dispatch(logout());
+    navigate("/dashboard/my-profile")
+    //dispatch(logout());
     dispatch(resetCart());
   }
  
   dispatch(setPaymentLoading(false))
   toast.success("Payment Successful. You are Added to the course ")
-    //navigate("/dashboard/my-profile")
-    dispatch(logout());
+    navigate("/dashboard/my-profile")
+    //dispatch(logout());
     dispatch(resetCart())
     // toast.dismiss(toastIdd)
     

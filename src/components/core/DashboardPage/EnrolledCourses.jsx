@@ -22,7 +22,7 @@ const EnrolledCourses = () =>{
     }
     useEffect(()=>{
         getEnrolledCourses()
-    },[]);
+    },[dispatch, token]);
     return (
         <div>
             <div className="text-3xl text-richblack-50 border-b border-b-richblack-400 pb-3">Enrolled Courses</div>
