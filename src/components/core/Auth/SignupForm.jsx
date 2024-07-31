@@ -14,7 +14,7 @@ const SignupForm = () => {
     const [showData,setShowData]=useState({firstName:"",lastName:"",email:"",password:"",confirmPassword:""});
     const[showPassword,setShowPassword]=useState(false);
     const[showConfirmPassword,setShowConfirmPassword]=useState(false)
-    const[accountType,setAccountType]=useState("Student")
+    const[accountType,setAccountType]=useState("Instructor")
     const{firstName,lastName,email,password,confirmPassword}=showData
 
     const changeHandler=(e)=>{
@@ -47,24 +47,25 @@ const SignupForm = () => {
       password: "",
       confirmPassword: "",
       })
-      setAccountType("Student")
+      setAccountType("Instructor")
     }
     return (
     <form  className='flex w-full flex-col gap-y-4' onSubmit={handleOnSubmit}>
         <div className='flex bg-richblack-800 rounded-full gap-x-1 mt-6 p-1 max-w-max'>
 
+         <button
+          onClick={()=>setAccountType("Instructor")}
+          className={`${accountType==="Instructor"?"bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
+          >
+            Instructor
+          </button>
           <button 
           onClick={()=>setAccountType("Student")}
           className={`${accountType==="Student"?"bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
           >
             Student
           </button>
-          <button
-          onClick={()=>setAccountType("Instructor")}
-          className={`${accountType==="Instructor"?"bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
-          >
-            Instructor
-          </button>
+          
           
         </div>
         {/* first and last name */}
