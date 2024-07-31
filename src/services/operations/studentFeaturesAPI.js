@@ -121,7 +121,11 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     // navigate("/dashboard/enrolled-courses")
     // dispatch(resetCart())
   } catch (error) {
+<<<<<<< HEAD
    // toast.success("Payment Successful. You are Added to the course ")
+=======
+   toast.success("Payment Successful. You are Added to the course ")
+>>>>>>> 6b33ae44080c3017d660e81a062b805f17a3ebc0
     navigate("/dashboard/my-profile")
     //dispatch(logout());
     dispatch(resetCart());
