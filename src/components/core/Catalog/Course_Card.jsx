@@ -26,7 +26,7 @@ const Coursecard = ({ course, Height }) => {
             <div className='flex justify-between items-center'>
             <p className="text-xl text-richblack-5">{course?.courseName}</p>
             <p className="text-sm text-richblack-50">
-            Instrctor: {course?.instructor?.firstName} {course?.instructor?.lastName}
+             {course?.instructor?.firstName} {course?.instructor?.lastName}
             </p>
             </div>
             <div className='flex justify-between mr-1'>
