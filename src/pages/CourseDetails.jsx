@@ -166,7 +166,7 @@ function CourseDetails() {
                   {courseName}
                 </p>
               </div>
-              <p className={`text-richblack-200`}>{courseDescription}</p>
+              <p className={`text-richblack-200 w-[400px]`}>{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
                 {/* <span className="text-yellow-25 flex items-center gap-1">{avgReviewCount} <FaStar className='text-yellow-100 text-lg'/></span>
                 <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
