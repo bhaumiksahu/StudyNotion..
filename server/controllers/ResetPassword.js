@@ -24,7 +24,7 @@ try {
     },
     {new:true});
     //createUrl
-    const url=`http://localhost:3000/update-password/${token}`;
+    const url=`https://studynotion-frontend-amber-two.vercel.app/update-password/${token}`;
     //mailsend
     await mailSender(
         email,

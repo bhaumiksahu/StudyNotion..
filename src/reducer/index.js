@@ -9,6 +9,6 @@ const rootReducer=combineReducers({
     profile:profileReducer,
     auth:authReducer,
     course:courseReducer,
-    viewCours:viewCourseReducer,
+    viewCourse:viewCourseReducer,
 })
 export default rootReducer;

@@ -112,7 +112,8 @@ export const enrolledCourses = (token)=>{
       if(!response.data.success){
         throw new Error(response.data.message)
       }
-      result=response.data.data.courses;
+      result=response.data.data;
+      console.log(result)
       
       //console.log(response.data.data.courses);
       

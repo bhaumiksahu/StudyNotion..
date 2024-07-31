@@ -32,13 +32,13 @@ const EnrolledCourses = () =>{
                 :
                 
                     !enrolledCourse.length?
-                    (<p className="grid h-[10vh] w-full place-content-center text-richblack-5">You haven't enrolled in any courses yet or If you purchase a new course,please wait for sometime & then refresh to see your updated list...</p>)
+                    (<p className="grid h-[10vh] w-full place-content-center text-richblack-5">You haven't enrolled in any courses yet </p>)
                     :
                     (
                         <div className="my-8 text-richblack-5">
                             <div className="flex rounded-t-lg bg-richblack-500 ">
                                 <p className="w-[45%] px-5 py-3">Course Name</p>
-                                <p className="w-1/4 px-2 py-3">Course Benefits</p>
+                                <p className="w-1/4 px-2 py-3">Duration</p>
                                 <p className="flex-1 px-2 py-3">Price</p>
                             </div>
                             {/* cards */}
@@ -69,12 +69,12 @@ const EnrolledCourses = () =>{
                                             </div>
 
                                             <div className="w-1/4 px-2 py-3 ml-1">
-                                                {course.whatYouWillLearn
+                                                {course.totalDuration
                                                 }
                                             </div>
 
                                             <div className="flex w-1/5 flex-col gap-2 px-2 py-3">
-                                                <p>{course.price}</p>
+                                                <p>Rs. {course.price}</p>
                                                 {/* <ProgressBar
                                                     completed={course.progressPercentage|0}
                                                     height="8px"

@@ -74,7 +74,7 @@ const Navbar = () => {
                                     className="rounded-lg bg-transparent mt-4 pl-4 hover:text-richblack-600"
                                   key={i}
                                 >
-                                  <p className="">{subLink.name}</p>
+                                  <p >{subLink.name}</p>
                                 </Link>
                               ))}
                           </div>
@@ -93,7 +93,7 @@ const Navbar = () => {
                           : "text-richblack-25"
                       }`}
                     >
-                      {link.title}
+                      <p className={`${link.title==="Contact Us"?"sm:block hidden":""}`}>{link.title}</p>
                     </p>
                   </Link>
                 )}

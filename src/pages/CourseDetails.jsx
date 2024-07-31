@@ -168,9 +168,9 @@ function CourseDetails() {
               </div>
               <p className={`text-richblack-200`}>{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
-                <span className="text-yellow-25 flex items-center gap-1">{avgReviewCount} <FaStar className='text-yellow-100 text-lg'/></span>
-                {/* <RatingStars Review_Count={avgReviewCount} Star_Size={24} /> */}
-                <span>{`(${ratingReviews.length} reviews)`}</span>
+                {/* <span className="text-yellow-25 flex items-center gap-1">{avgReviewCount} <FaStar className='text-yellow-100 text-lg'/></span>
+                <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
+                <span>{`(${ratingReviews.length} reviews)`}</span> */}
                 <span>{`${studentsEnroled.length} students enrolled`}</span>
               </div>
               <div>
