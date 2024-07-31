@@ -6,6 +6,7 @@ import { setPaymentLoading } from "../../slices/courseSlice"
 import { resetCart } from "../../slices/cartSlice"
 import { studentEndpoints } from "../apis"
 import { logout } from "./authAPI"
+import EnrolledCourses from "../../components/core/DashboardPage/EnrolledCourses"
 // import { resetCart } from "../../slices/cartSlice"
 // import { setPaymentLoading } from "../../slices/courseSlice"
 // import { apiConnector } from "../apiConnector"
@@ -118,21 +119,22 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     }
 
     // toast.success("Payment Successful. You are Added to the course ")
-    // navigate("/dashboard/enrolled-courses")
-    // dispatch(resetCart())
+    navigate("/dashboard/my-profile")
+    dispatch(resetCart())
   } catch (error) {
    // toast.success("Payment Successful. You are Added to the course ")
     navigate("/dashboard/my-profile")
-    //dispatch(logout());
     dispatch(resetCart());
+  }finally {
+    // Ensure loading state is always updated
+    dispatch(setPaymentLoading(false));
   }
  
   dispatch(setPaymentLoading(false))
   toast.success("Payment Successful. You are Added to the course ")
     navigate("/dashboard/my-profile")
-    //dispatch(logout());
+    
     dispatch(resetCart())
-    // toast.dismiss(toastIdd)
     
 }
 

@@ -208,7 +208,7 @@ const Home = () => {
 
          <Instructor/>
 
-         <h2 className='text-center text-4xl font-semibold mt-10'>review from other Learners</h2>
+         
 
 
       </div>

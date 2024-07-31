@@ -93,55 +93,95 @@ exports.capturePayment = async (req, res) => {
 }
 
 // verify the payment
-exports.verifyPayment = async (req, res) => {
-  const razorpay_order_id = req.body?.razorpay_order_id
-  const razorpay_payment_id = req.body?.razorpay_payment_id
-  const razorpay_signature = req.body?.razorpay_signature
-  const courses = req.body?.courses
+// exports.verifyPayment = async (req, res) => {
+//   const razorpay_order_id = req.body?.razorpay_order_id
+//   const razorpay_payment_id = req.body?.razorpay_payment_id
+//   const razorpay_signature = req.body?.razorpay_signature
+//   const courses = req.body?.courses
   
  
-  const userId = req.user.id
-  const enrolledCourse = await Course.findOneAndUpdate(
-    { _id: courses },
-    { $push: { studentsEnroled: userId } },
-    { new: true }
-  )
-  // Find the student and add the course to their list of enrolled courses
-  const enrolledStudent = await User.findByIdAndUpdate(
-    userId,
-    {
-      $push: {
-        courses: courses,
-        // courseProgress: courseProgress._id,
-      },
-    },
-    { new: true }
-  )
+//   const userId = req.user.id
+//   const enrolledCourse = await Course.findOneAndUpdate(
+//     { _id: courses },
+//     { $push: { studentsEnroled: userId } },
+//     { new: true }
+//   )
+//   // Find the student and add the course to their list of enrolled courses
+//   const enrolledStudent = await User.findByIdAndUpdate(
+//     userId,
+//     {
+//       $push: {
+//         courses: courses,
+//         // courseProgress: courseProgress._id,
+//       },
+//     },
+//     { new: true }
+//   )
 
-  if (
-    !razorpay_order_id ||
-    !razorpay_payment_id ||
-    !razorpay_signature ||
-    !courses ||
-    !userId
-  ) {
-    return res.status(200).json({ success: false, message: "Payment Failed" })
+//   if (
+//     !razorpay_order_id ||
+//     !razorpay_payment_id ||
+//     !razorpay_signature ||
+//     !courses ||
+//     !userId
+//   ) {
+//     return res.status(200).json({ success: false, message: "Payment Failed" })
+//   }
+
+//   let body = razorpay_order_id + "|" + razorpay_payment_id
+
+//   const expectedSignature = crypto
+//     .createHmac("sha256", process.env.RAZORPAY_SECRET)
+//     .update(body.toString())
+//     .digest("hex")
+
+//   if (expectedSignature === razorpay_signature) {
+//     await enrollStudents(courses, userId, res)
+//     return res.status(200).json({ success: true, message: "Payment Verified" })
+//   }
+
+//   return res.status(200).json({ success: false, message: "Payment Failed" })
+// }
+exports.verifyPayment = async (req, res) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature, courses } = req.body;
+  const userId = req.user.id;
+
+  // Check if all required fields are provided
+  if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !courses || !userId) {
+    return res.status(400).json({ success: false, message: "Payment verification data is incomplete" }); // Updated: Changed to 400 Bad Request and clarified message
   }
 
-  let body = razorpay_order_id + "|" + razorpay_payment_id
+  try {
+    // Verify the payment signature
+    let body = `${razorpay_order_id}|${razorpay_payment_id}`;
+    const expectedSignature = crypto
+      .createHmac('sha256', process.env.RAZORPAY_SECRET)
+      .update(body)
+      .digest('hex');
 
-  const expectedSignature = crypto
-    .createHmac("sha256", process.env.RAZORPAY_SECRET)
-    .update(body.toString())
-    .digest("hex")
+    if (expectedSignature !== razorpay_signature) {
+      return res.status(400).json({ success: false, message: "Payment verification failed: Signature mismatch" }); // Updated: Changed to 400 Bad Request and clarified message
+    }
 
-  if (expectedSignature === razorpay_signature) {
-    await enrollStudents(courses, userId, res)
-    return res.status(200).json({ success: true, message: "Payment Verified" })
+    // Update course and user records
+    await Course.findOneAndUpdate(
+      { _id: courses },
+      { $push: { studentsEnroled: userId } },
+      { new: true }
+    );
+
+    await User.findByIdAndUpdate(
+      userId,
+      { $push: { courses: courses } },
+      { new: true }
+    );
+
+    return res.status(200).json({ success: true, message: "Payment Verified" });
+  } catch (error) {
+    console.error("Error during payment verification:", error); // Updated: Added console.error for logging
+    return res.status(500).json({ success: false, message: "Internal server error during payment verification" }); // Updated: Changed to 500 Internal Server Error and clarified message
   }
-
-  return res.status(200).json({ success: false, message: "Payment Failed" })
-}
+};
 
 // Send Payment Success Email
 exports.sendPaymentSuccessEmail = async (req, res) => {

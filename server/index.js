@@ -24,13 +24,15 @@ app.use(fileUpload({
 }));
 app.use(cookieParser());
 
-app.use(
-    cors({
-        origin:"*",
-        credentials:true,
-        optionsSuccessStatus:200
-    })
-)
+app.use(cors({
+    origin: '*', // Adjust this as needed for security
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow necessary methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
+    credentials: true
+  }));
+  
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 //cloudinaryconnect
 cloudinaryConnect();
 //routes
