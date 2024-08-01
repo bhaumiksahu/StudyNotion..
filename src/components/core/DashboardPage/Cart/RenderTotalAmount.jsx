@@ -17,7 +17,7 @@ const RenderTotalAmount = () => {
     BuyCourse(token, courses, user, navigate, dispatch)
     }
   return (
-    <div className="min-w-[250px] rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
+    <div className="min-w-[200px] w-[350px] rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
     <p className="mb-1 text-xl font-medium text-richblack-300 flex justify-between ">Total:<p className="mb-6 text-2xl font-medium text-yellow-100">₹ {total}</p></p>
     
 
@@ -29,7 +29,7 @@ const RenderTotalAmount = () => {
             </div>
             <div className='min-w-[250px]'>
             <p className="min-w-[250px] pb-3 pt-6 text-center text-sm  text-richblack-25">
-             Don't Scan Just enter your Number on UPI and pay
+            <span className="text-pink-500 text-sm">Hint:</span>Don't Scan Just enter your Number on UPI and pay
             </p>
           </div>
   </div>

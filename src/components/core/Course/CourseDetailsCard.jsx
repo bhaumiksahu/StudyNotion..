@@ -100,9 +100,9 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
               </button>
             )}
           </div>
-          <div>
+          <div className="flex">
             <p className="pb-3 pt-6 text-center text-sm text-richblack-25">
-            While buying don't Scan Just enter your Number on UPI and pay...Don't worry no money will be deducted.
+            <span className="text-pink-500 text-sm">Hint:</span>While buying don't Scan Just enter your Number on UPI and pay...Don't worry no money will be deducted.
             </p>
           </div>
 
